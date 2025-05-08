@@ -154,7 +154,7 @@
             font-weight: 600;
             text-align: center;
             margin-top: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            margin-bottom: var(--spacing-md);
             padding: var(--spacing-xs);
             /* Attractive Gradient Text */
             background: var(--gradient-attractive);
@@ -162,6 +162,26 @@
             background-clip: text;
             color: transparent;
             filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-md) auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #d97706, #dc2626);
         }
 
         .highlight-word {
@@ -365,6 +385,7 @@
         <div class="main-heading">
             <h1>Article Lens</h1>
             <p class="tagline">AI assistant for <span class="highlight-word">researchers</span> for <span class="highlight-word">discovering</span> papers, smart <span class="highlight-word">summaries</span>, and <span class="highlight-word">guided reading</span>.</p>
+            <a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="cta-button">Try the App</a>
         </div>
 
         <section id="challenges"> <h2>Challenges Researchers Face & Our Solutions</h2>
