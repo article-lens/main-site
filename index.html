@@ -2,415 +2,541 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ArticleLens - Navigate the Future of Research</title>
-    <!-- Embedded CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Lens - AI Research Assistant</title>
     <style>
-        /* General Styles */
+        /* General Styles Inspired by provided CSS */
+        :root {
+          --color-bg-page: #f0f7ff; /* Light Blue Background */
+          --color-bg-card: #ffffff; /* White Card Background */
+          --color-nav-bg: black; /* Black Navbar Background */
+          --color-nav-link: #e0e0e0; /* Light Grey Nav Link */
+          --color-nav-link-hover: #ffffff; /* White Nav Link Hover */
+          --color-nav-link-bg-hover: #6f42c1; /* Purple Nav Link Hover BG */
+          --color-border: #e0e7ff;
+          --color-border-light: #eef2ff;
+          --color-text-heading: #1e3a8a; /* Dark Blue */
+          --color-text-body: #1e40af;   /* Medium Blue */
+          --color-text-muted: #64748b;   /* Grayish Blue */
+          --color-primary: #60a5fa;      /* Light Blue */
+          --color-primary-dark: #3b82f6; /* Medium Blue */
+          --color-secondary: #a855f7;     /* Purple */
+          --color-secondary-dark: #9333ea;/* Dark Purple */
+          --gradient-primary: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+          --gradient-primary-hover: linear-gradient(to right, var(--color-primary-dark), var(--color-secondary-dark));
+          --gradient-attractive: linear-gradient(135deg, #60a5fa, #a855f7, #facc15); /* Blue, Purple, Yellow */
+          --color-problem-bg: #fffbeb; /* Lighter Yellow for Problem */
+          --color-problem-border: #fef3c7;
+          --color-problem-text: #b45309; /* Darker Amber */
+          --color-solution-bg: #ecfdf5; /* Lighter Green for Solution */
+          --color-solution-border: #a7f3d0;
+          --color-solution-text: #047857; /* Dark Green */
+
+          --radius-md: 0.375rem;
+          --radius-lg: 0.5rem;
+          --radius-xl: 0.75rem;
+          --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          --spacing-sm: 0.5rem;
+          --spacing-md: 1rem;
+          --spacing-lg: 1.5rem;
+          --spacing-xl: 2rem;
+          --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+          --nav-height: 60px;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg-page);
+            color: var(--color-text-body);
+            line-height: 1.6;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #0e0e0e;
-            color: #fff;
+            padding: 0;
+            padding-top: var(--nav-height); /* Prevent content overlap */
         }
 
-        a {
-            color: #00ffff;
+        /* Navigation Bar */
+        nav.main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background-color: var(--color-nav-bg);
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center nav items */
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+        }
+
+        nav.main-nav ul li {
+            display: inline;
+        }
+
+        nav.main-nav ul li a {
+            color: var(--color-nav-link);
             text-decoration: none;
+            font-size: 1.05rem; /* Adjusted size */
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap; /* Prevent link text wrapping */
         }
 
-        h1, h2, h3 {
-            font-weight: 300;
+        nav.main-nav ul li a:hover,
+        nav.main-nav ul li a:focus {
+            color: var(--color-nav-link-hover) !important;
+            background-color: var(--color-nav-link-bg-hover) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+        }
+
+        .try-app-link {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white !important;
+            padding: 8px 16px !important;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .try-app-link:hover {
+            background: linear-gradient(135deg, #d97706, #dc2626);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: var(--spacing-lg);
+        }
+
+        .main-heading {
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1 {
+            color: var(--color-text-heading);
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-xs);
+            /* Attractive Gradient Text */
+            background: var(--gradient-attractive);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1));
+        }
+
+        .highlight-word {
+            display: inline-block;
+            padding: 0 4px;
+            border-radius: 4px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e40af, #4c1d95);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: var(--color-text-heading);
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--color-border);
         }
 
         p {
-            line-height: 1.6;
+            color: var(--color-text-body);
+            font-size: 1rem;
+            margin-bottom: var(--spacing-md);
         }
 
-        /* Header Styles */
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), #0e0e0e), url('background.jpg') center/cover no-repeat;
-            height: 100vh;
+        /* Section Styling */
+        section {
+            margin-bottom: var(--spacing-xl);
+            background-color: var(--color-bg-card);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1em 2em;
+        /* Problem/Solution Flow Section */
+        .problem-solution-pair {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background-color: #f8f9fa;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border-light);
         }
 
-        .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            letter-spacing: 2px;
-            color: #00ffff;
+        .problem-card, .solution-card {
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
+        .problem-card {
+            background-color: var(--color-problem-bg);
+            border: 1px solid var(--color-problem-border);
+        }
+        .solution-card {
+            background-color: var(--color-solution-bg);
+            border: 1px solid var(--color-solution-border);
+            margin-bottom: 0;
         }
 
-        .nav-links li {
-            margin: 0 1em;
-        }
-
-        .nav-links a {
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #008b8b;
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background-color: #fff;
-            margin: 4px 0;
-        }
-
-        .header-content {
-            text-align: center;
-            position: relative;
-            top: 40%;
-            transform: translateY(-40%);
-        }
-
-        .header-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 0.5em;
-        }
-
-        .header-content p {
-            font-size: 1.2em;
-            margin-bottom: 1em;
-        }
-
-        .btn {
-            padding: 0.8em 2em;
-            border: none;
-            background-color: #00ffff;
-            color: #0e0e0e;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background 0.3s;
-            border-radius: 5px;
-        }
-
-        .btn:hover {
-            background-color: #008b8b;
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 4em 2em;
-            background-color: #121212;
-            text-align: center;
-        }
-
-        .features-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-box {
-            flex: 1 1 300px;
-            margin: 1em;
-            padding: 2em;
-            background-color: #1e1e1e;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-box h3 {
-            margin-bottom: 1em;
-            color: #00ffff;
-        }
-
-        /* Newsletter and Guide Sections */
-        .newsletter-section,
-        .guide-section {
-            padding: 4em 2em;
-        }
-
-        .newsletter-section ul,
-        .guide-section ul {
+        .problem-card h3, .solution-card h3 {
+            margin-top: 0;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.3rem;
+            font-weight: 600;
             text-align: left;
-            max-width: 800px;
-            margin: 0 auto;
+        }
+
+        .problem-card h3 { color: var(--color-problem-text); }
+        .solution-card h3 { color: var(--color-solution-text); }
+
+        .problem-card p, .solution-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+            text-align: left;
+        }
+        .problem-card p { color: var(--color-problem-text); }
+        .solution-card p { color: var(--color-solution-text); }
+
+        .problem-card ul, .solution-card ul {
             list-style: none;
-            padding: 0;
+            padding-left: 0;
+            margin: var(--spacing-sm) 0 0 0;
         }
-
-        .newsletter-section li,
-        .guide-section li {
-            margin-bottom: 1em;
-            padding-left: 1.5em;
+        .problem-card li, .solution-card li {
+            margin-bottom: var(--spacing-xs);
+            padding-left: var(--spacing-md);
             position: relative;
+            font-size: 1rem;
         }
-
-        .newsletter-section li::before,
-        .guide-section li::before {
+        .problem-card li::before {
+            content: '✘';
+            position: absolute;
+            left: 0;
+            color: var(--color-problem-text);
+            font-weight: bold;
+        }
+         .solution-card li::before {
             content: '✔';
             position: absolute;
             left: 0;
-            color: #00ffff;
+            color: var(--color-solution-text);
+            font-weight: bold;
+         }
+
+        /* Team Section Styling */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
         }
 
-        /* Team Section */
-        .team-section {
-            padding: 4em 2em;
-            background-color: #121212;
+        .team-member-card {
+            background-color: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
             text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .team-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
+        .team-member-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
         }
 
-        .team-member {
-            flex: 1 1 200px;
-            margin: 1em;
-            text-align: center;
-        }
-
-        .team-member img {
-            width: 150px;
-            height: 150px;
+        .team-photo img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
+            margin: 0 auto var(--spacing-md);
             object-fit: cover;
-            border: 2px solid #00ffff;
+            border: 3px solid var(--color-border);
+            background-color: #eee; /* Fallback background for empty src */
         }
 
-        .team-member h3 {
-            margin-top: 1em;
-            color: #00ffff;
+        .team-member-header h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text-heading);
+            margin-bottom: var(--spacing-sm);
         }
 
-        /* Footer */
+        .team-member-link a {
+            display: inline-block;
+            margin-top: var(--spacing-md);
+            padding: 8px 18px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .team-member-link a:hover {
+            background: var(--gradient-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer for extra links */
         footer {
             text-align: center;
-            padding: 2em;
-            background-color: #0e0e0e;
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+        }
+        footer a {
+            color: var(--color-primary-dark);
+            margin: 0 var(--spacing-sm);
+            text-decoration: underline;
+        }
+        footer a:hover {
+            color: var(--color-primary);
         }
 
-        footer p {
-            margin: 0;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background-color: #0e0e0e;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                width: 200px;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 1em 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .header-content h1 {
-                font-size: 2.5em;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .feature-box, .team-member {
-            animation: fadeIn 1s ease-in;
-        }
-
-        /* Additional Styles */
-        .feature-box p {
-            font-size: 1em;
-        }
-
-        .newsletter-section h2,
-        .guide-section h2 {
-            margin-bottom: 0.5em;
-            color: #00ffff;
-        }
-
-        .newsletter-section p,
-        .guide-section p {
-            max-width: 800px;
-            margin: 0 auto 2em;
-            font-size: 1.1em;
-        }
-
-        .newsletter-section ul li,
-        .guide-section ul li {
-            font-size: 1em;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">ArticleLens</div>
-            <ul class="nav-links">
-                <li><a href="https://github.com/article-lens/">GitHub Project</a></li>
-                <li><a href="https://github.com/article-lens/reports">Reports</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#newsletter">Newsletter</a></li>
-                <li><a href="#guide">Research Guide</a></li>
-            </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-        <div class="header-content">
-            <h1>Navigate the Future of Research with ArticleLens</h1>
-            <p>Your personalized gateway to the latest scientific breakthroughs.</p>
-            <a href="#features" class="btn">Discover More</a>
-        </div>
-    </header>
-
-    <section id="features" class="features-section">
-        <h2>Features</h2>
-        <div class="features-container">
-            <div class="feature-box">
-                <h3>Personalized Newsletter with Recommender</h3>
-                <p>Stay ahead with daily updates tailored to your interests. Select categories, input your queries, and receive summaries with customizable sections.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Interactive Research Guide</h3>
-                <p>Navigate through research papers with customized reading paths. Provide a topic or article and get a structured reading order from foundational to advanced papers.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="newsletter" class="newsletter-section">
-        <h2>Newsletter with Recommender</h2>
-        <p>Thousands of papers are published daily. Let ArticleLens help you focus on what matters most.</p>
+    <nav class="main-nav">
         <ul>
-            <li><strong>Select Preferred Categories:</strong> Choose from various Arxiv categories that align with your research interests.</li>
-            <li><strong>Input Topics or Queries:</strong> Specify topics like "Prompt Injection" to narrow down the papers.</li>
-            <li><strong>Customize Summaries:</strong> Add or remove sections such as "Disadvantages" to tailor the information you receive.</li>
-            <li><strong>Daily Updates:</strong> Receive summaries every day, keeping you updated on the latest developments.</li>
+            <li><a href="#challenges">Solutions</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a></li>
+            <li><a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
-    </section>
+    </nav>
 
-    <section id="guide" class="guide-section">
-        <h2>Research Guide</h2>
-        <p>Get a structured reading path based on your current interests or articles.</p>
-        <ul>
-            <li><strong>Provide a Topic or Article:</strong> Input a specific article you're reading or a topic you're interested in.</li>
-            <li><strong>Access Ranked References:</strong> The system extracts and ranks references based on publication date, citation count, and complexity level.</li>
-            <li><strong>Suggested Reading Order:</strong> Follow a path from introductory-level papers to advanced research for comprehensive understanding.</li>
-            <li><strong>Enhance Your Research:</strong> Efficiently build knowledge and stay informed about foundational and cutting-edge studies.</li>
-        </ul>
-    </section>
-
-    <section id="team" class="team-section">
-        <h2>Meet the Team</h2>
-        <div class="team-container">
-            <!-- Team Member 1 -->
-            <div class="team-member">
-                <img src="serra_capraz.jpg" alt="Serra Çapraz">
-                <h3>Serra Çapraz</h3>
-                <p>Bilkent University Student specializing in AI and Machine Learning.</p>
-            </div>
-            <!-- Team Member 2 -->
-            <div class="team-member">
-                <img src="eray_yapagci.jpg" alt="Eray Yapağcı">
-                <h3>Eray Yapağcı</h3>
-                <p>Bilkent University Student with a focus on Data Science and Analytics.</p>
-            </div>
-            <!-- Team Member 3 -->
-            <div class="team-member">
-                <img src="mehmet_dedeler.jpg" alt="Mehmet Dedeler">
-                <h3>Mehmet Dedeler</h3>
-                <p>Bilkent University Student passionate about Software Development.</p>
-            </div>
-            <!-- Team Member 4 -->
-            <div class="team-member">
-                <img src="berkan_yikilmaz.jpg" alt="Berkan Yıkılmaz">
-                <h3>Berkan Yıkılmaz</h3>
-                <p>Bilkent University Student focusing on User Experience Design.</p>
-            </div>
-            <!-- Team Member 5 -->
-            <div class="team-member">
-                <img src="alper_gocmen.jpg" alt="Alper Göçmen">
-                <h3>Alper Göçmen</h3>
-                <p>Bilkent University Student specializing in Backend Development.</p>
-            </div>
+    <div class="container">
+        <div class="main-heading">
+            <h1>Article Lens</h1>
+            <p class="tagline">AI assistant for <span class="highlight-word">researchers</span> for <span class="highlight-word">discovering</span> papers, smart <span class="highlight-word">summaries</span>, and <span class="highlight-word">guided reading</span>.</p>
         </div>
-    </section>
+
+        <section id="challenges"> <h2>Challenges Researchers Face & Our Solutions</h2>
+
+            <div class="problem-solution-pair">
+                <div class="problem-card">
+                    <h3>Problem: Finding Relevant Papers</h3>
+                    <ul>
+                        <li>Need Specific Papers</li>
+                        <li>Lack of Effective Filtering</li>
+                        <li>Time Lost Searching</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <h3>Solution: Easy Discovery</h3>
+                    <ul>
+                        <li>Select Arxiv Categories</li>
+                        <li>Enter Your Query</li>
+                        <li>Get a Specified Paper Newsletter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-solution-pair">
+                <div class="problem-card">
+                    <h3>Problem: Wasting Time on Irrelevant Papers</h3>
+                     <ul>
+                        <li>Quality is Subjective</li>
+                        <li>Varying Evaluation Needs</li>
+                        <li>Risk of Wasted Effort</li>
+                    </ul>
+                </div>
+                 <div class="solution-card">
+                    <h3>Solution: Pre-Qualified Reading</h3>
+                     <ul>
+                        <li>Personalize Judgment Criteria</li>
+                        <li>See Scores Before Reading</li>
+                        <li>Focus on Top Matches</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-solution-pair">
+                <div class="problem-card">
+                    <h3>Problem: Needing Specific Information Fast</h3>
+                     <ul>
+                        <li>Must Read Entire Papers</li>
+                        <li>Hard to Locate Key Sections</li>
+                        <li>Unnecessary Time Spent</li>
+                    </ul>
+                </div>
+                 <div class="solution-card">
+                    <h3>Solution: Targeted Summaries</h3>
+                     <ul>
+                        <li>Personalize Summary Blocks/Prompts</li>
+                        <li>Extract Specific Information</li>
+                        <li>Save Valuable Time</li>
+                    </ul>
+                </div>
+            </div>
+
+             <div class="problem-solution-pair">
+                <div class="problem-card">
+                    <h3>Problem: Missing Prerequisite Knowledge</h3>
+                    <ul>
+                        <li>Background Needed for Understanding</li>
+                        <li>Time Lost Due to Knowledge Gaps</li>
+                        <li>Repeated Reading</li>
+                    </ul>
+                </div>
+                 <div class="solution-card">
+                    <h3>Solution: Guided Learning Path</h3>
+                     <ul>
+                        <li>Upload the Target Paper PDF</li>
+                        <li>Follow the Generated Research Guide</li>
+                        <li>Build Knowledge Systematically</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="problem-solution-pair">
+                <div class="problem-card">
+                    <h3>Problem: Reading Difficulty Varies</h3>
+                     <ul>
+                        <li>Difficulty Depends on Your Background</li>
+                        <li>Tackling Hard Papers Too Early Wastes Time</li>
+                        <li>Complexity Causes Re-reading</li>
+                    </ul>
+                </div>
+                 <div class="solution-card">
+                    <h3>Solution: Personalized Difficulty</h3>
+                     <ul>
+                        <li>Upload Your CV</li>
+                        <li>See Difficulty Scores Tailored to You</li>
+                        <li>Follow Your Personalized Guide</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="team"> <h2>Meet the Team</h2>
+            <div class="team-grid">
+
+                <div class="team-member-card">
+                    <div class="team-photo">
+                       <img src="photos/eray.jpeg" alt="Photo of Eray Yapağcı">
+                   </div>
+                   <div class="team-member-header">
+                       <h4>Eray Yapağcı</h4>
+                   </div>
+                   <div class="team-member-link">
+                       <a href="https://www.linkedin.com/in/eray-yapa%C4%9Fc%C4%B1-376a37233/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                   </div>
+               </div>
+              <div class="team-member-card">
+                <div class="team-photo">
+                    <img src="photos/mehmet.jpeg" alt="Photo of Mehmet Dedeler">
+                </div>
+                <div class="team-member-header">
+                    <h4>Mehmet Dedeler</h4>
+                </div>
+                <div class="team-member-link">
+                    <a href="https://www.linkedin.com/in/mehmet-dedeler-b271941bb/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+
+
+                <div class="team-member-card">
+                  <div class="team-photo">
+                      <img src="photos/alper.jpeg" alt="Photo of Alper Göçmen">
+                  </div>
+                  <div class="team-member-header">
+                      <h4>Alper Göçmen</h4>
+                  </div>
+                  <div class="team-member-link">
+                      <a href="https://www.linkedin.com/in/alpergocmen/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  </div>
+              </div>
+                 <div class="team-member-card">
+                     <div class="team-photo">
+                        <img src="photos/serra.jpeg" alt="Photo of Serra Çapraz">
+                    </div>
+                    <div class="team-member-header">
+                        <h4>Serra Çapraz</h4>
+                    </div>
+                    <div class="team-member-link">
+                        <a href="https://www.linkedin.com/in/serra-%C3%A7apraz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+                 <div class="team-member-card">
+                     <div class="team-photo">
+                         <img src="photos/berkan.jpeg" alt="Photo of Berkan Yıkılmaz">
+                    </div>
+                    <div class="team-member-header">
+                        <h4>Berkan Yıkılmaz</h4>
+                    </div>
+                    <div class="team-member-link">
+                        <a href="https://www.linkedin.com/in/berkan-yikilmaz/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
 
     <footer>
-        <p>© 2024 ArticleLens. All rights reserved.</p>
+        Article Lens &copy; 2024 -
+        <a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a> |
+        <a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a>
     </footer>
 
-    <!-- Embedded JavaScript -->
-    <script>
-        // Mobile Navigation Toggle
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('is-active');
-        });
-
-        // Smooth Scrolling
-        const navLinksItems = document.querySelectorAll('.nav-links a');
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const href = link.getAttribute('href');
-                document.querySelector(href).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('is-active');
-            });
-        });
-
-        // Header Animation on Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            header.style.backgroundPositionY = -window.scrollY / 2 + 'px';
-        });
-    </script>
 </body>
 </html>
