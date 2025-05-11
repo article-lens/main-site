@@ -58,7 +58,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            padding-top: var(--nav-height); /* Prevent content overlap */
+            padding-top: var(--nav-height); /* Prevent content overlap by fixed nav */
         }
 
         /* Navigation Bar */
@@ -167,6 +167,52 @@
             color: transparent;
             margin: 0;
         }
+
+        /* News Banner Styles - Inspired by Azure Popup */
+        .news-banner {
+            background: linear-gradient(135deg, #0078d4, #004578); /* Popup background */
+            color: white;
+            padding: var(--spacing-md) var(--spacing-lg); /* INCREASED padding */
+            border-radius: var(--radius-lg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* STRONGER shadow */
+            margin-top: var(--spacing-md); 
+            margin-bottom: var(--spacing-xl); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md); /* INCREASED gap */
+            text-align: center; 
+            width: 100%; /* Ensure it takes full width of its parent (.main-heading content area) */
+            box-sizing: border-box;
+        }
+
+        .news-banner-icon {
+            width: 36px; /* INCREASED size */
+            height: 36px; /* INCREASED size */
+            flex-shrink: 0; 
+        }
+
+        .news-banner p {
+            margin: 0; 
+            color: white; 
+            font-size: 1.1rem; /* INCREASED base font size */
+            line-height: 1.5;
+        }
+
+        .news-banner p strong { 
+            font-weight: 700;
+            font-size: 1.05em; /* Relative to new base, so it's larger */
+            opacity: 0.95;
+            margin-right: 0.3em;
+        }
+
+        .news-banner .news-banner-amount { 
+            font-weight: 800;
+            font-size: 1.3em; /* INCREASED emphasis, relative to new base */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            padding: 0 0.1em;
+        }
+
 
         .tagline {
             font-size: 1.4rem;
@@ -388,82 +434,6 @@
             color: var(--color-primary);
         }
 
-        /* Azure Credit Popup Styles */
-        .azure-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #0078d4, #004578);
-            color: white;
-            padding: clamp(1rem, 5vw, 2rem);
-            border-radius: var(--radius-lg);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 2000;
-            width: min(90%, 400px);
-            text-align: center;
-        }
-
-        .azure-popup h3 {
-            color: white;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .azure-popup .amount {
-            font-size: clamp(2rem, 6vw, 3rem);
-            font-weight: 800;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin: 0.5rem 0;
-            display: block;
-        }
-
-        .azure-popup p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
-
-        .azure-popup .close-btn {
-            background: white;
-            color: #0078d4;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            width: min(80%, 200px);
-        }
-
-        .azure-popup .close-btn:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px);
-        }
-
-        .azure-popup .azure-logo {
-            width: clamp(50px, 15vw, 70px);
-            height: clamp(50px, 15vw, 70px);
-            margin-bottom: 1rem;
-        }
-
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1999;
-            backdrop-filter: blur(3px);
-        }
-
         @media (max-width: 768px) {
             nav.main-nav {
                 height: auto;
@@ -493,6 +463,19 @@
                 padding: 0.4rem 0.8rem !important;
                 width: 100%;
             }
+            
+            .news-banner { 
+                padding: var(--spacing-md); /* Adjusted padding for medium screens */
+                flex-direction: column; 
+                gap: var(--spacing-sm); /* Adjusted gap for stacked layout */
+            }
+            .news-banner-icon {
+                width: 32px; /* Slightly smaller icon on tablets */
+                height: 32px;
+            }
+            .news-banner p {
+                font-size: 1rem; /* Adjusted font size for tablets */
+            }
         }
 
         @media (max-width: 480px) {
@@ -514,20 +497,23 @@
                 padding: 0.3rem 0.6rem !important;
                 font-size: 0.85rem;
             }
+
+            .news-banner {
+                padding: var(--spacing-sm) var(--spacing-md); /* Further adjust padding for small mobile */
+                gap: var(--spacing-xs);
+            }
+            .news-banner-icon {
+                width: 28px; /* Smaller icon on mobile */
+                height: 28px;
+            }
+             .news-banner p {
+                font-size: 0.9rem; /* Smaller text on mobile */
+            }
         }
 
     </style>
 </head>
 <body>
-    <!-- Azure Credit Popup -->
-    <div class="popup-overlay" id="popupOverlay"></div>
-    <div class="azure-popup" id="azurePopup">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Microsoft Azure Logo" class="azure-logo">
-        <h3>Azure Credit Award</h3>
-        <span class="amount">$5,000</span>
-        <p>Microsoft Azure credits awarded to Article Lens</p>
-        <button class="close-btn" onclick="closePopup()">Close</button>
-    </div>
 
     <nav class="main-nav">
         <ul>
@@ -543,6 +529,10 @@
     <div class="container">
         <div class="main-heading">
             <h1>Article Lens</h1>
+            <div class="news-banner">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Microsoft Azure Logo" class="news-banner-icon">
+                <p><strong>NEWS:</strong> Article Lens has been awarded <span class="news-banner-amount">$5,000</span> Microsoft Azure credits!</p>
+            </div>
             <p class="tagline">AI assistant for <span class="highlight-word">researchers</span> for <span class="highlight-word">discovering</span> papers, smart <span class="highlight-word">summaries</span>, and <span class="highlight-word">guided reading</span>.</p>
             <a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="cta-button">Try the App</a>
         </div>
@@ -763,7 +753,7 @@
     </div>
 
     <footer>
-        Article Lens &copy; 2024 -
+        Article Lens © 2024 -
         <a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a> |
         <a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a>
     </footer>
@@ -880,7 +870,7 @@
         }
 
         @media (max-width: 480px) {
-            .award-card {
+             .award-card { /* This was duplicated from the general @media (max-width: 480px) further up, corrected */
                 flex-direction: column;
                 text-align: center;
                 padding: var(--spacing-md);
@@ -902,25 +892,6 @@
     </style>
 
     <script>
-        // Show popup when page loads
-        window.onload = function() {
-            document.getElementById('popupOverlay').style.display = 'block';
-            document.getElementById('azurePopup').style.display = 'block';
-        }
-
-        // Close popup function
-        function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
-            document.getElementById('azurePopup').style.display = 'none';
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        // Close popup when clicking outside
-        document.getElementById('popupOverlay').onclick = closePopup;
-
         // Scroll indicator
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('section[id]');
@@ -931,8 +902,8 @@
                 
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    if (window.scrollY >= (sectionTop - 200)) {
+                    // const sectionHeight = section.clientHeight; // Not strictly needed for this logic
+                    if (window.scrollY >= (sectionTop - 200)) { 
                         current = section.getAttribute('id');
                     }
                 });
@@ -945,10 +916,7 @@
                 });
             }
 
-            // Set initial active state
             setActiveLink();
-
-            // Update on scroll
             window.addEventListener('scroll', setActiveLink);
         });
     </script>
