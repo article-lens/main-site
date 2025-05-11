@@ -108,12 +108,26 @@
             display: inline-block;
         }
 
-        nav.main-nav ul li a:hover,
-        nav.main-nav ul li a:focus {
-            color: var(--color-nav-link-hover) !important;
-            background-color: var(--color-nav-link-bg-hover) !important;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+        nav.main-nav ul li a.active {
+            color: var(--color-nav-link-hover);
+            background-color: var(--color-nav-link-bg-hover);
+        }
+
+        nav.main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--color-nav-link-hover);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav.main-nav ul li a:hover::after,
+        nav.main-nav ul li a.active::after {
+            width: 80%;
         }
 
         .try-app-link {
@@ -517,10 +531,10 @@
 
     <nav class="main-nav">
         <ul>
-            <li><a href="#challenges">Solutions</a></li>
-            <li><a href="#team">Team</a></li>
-            <li><a href="#documents">Documents</a></li>
-            <li><a href="#awards">Awards</a></li>
+            <li><a href="#challenges" class="nav-link">Solutions</a></li>
+            <li><a href="#team" class="nav-link">Team</a></li>
+            <li><a href="#documents" class="nav-link">Documents</a></li>
+            <li><a href="#awards" class="nav-link">Awards</a></li>
             <li><a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a></li>
             <li><a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
@@ -898,10 +912,45 @@
         function closePopup() {
             document.getElementById('popupOverlay').style.display = 'none';
             document.getElementById('azurePopup').style.display = 'none';
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // Close popup when clicking outside
         document.getElementById('popupOverlay').onclick = closePopup;
+
+        // Scroll indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function setActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            // Set initial active state
+            setActiveLink();
+
+            // Update on scroll
+            window.addEventListener('scroll', setActiveLink);
+        });
     </script>
 </body>
 </html>
