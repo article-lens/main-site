@@ -69,10 +69,10 @@
             right: 0;
             height: var(--nav-height);
             background-color: var(--color-nav-bg);
-            padding: 0 var(--spacing-lg);
+            padding: 0 clamp(0.5rem, 2vw, 1.5rem);
             display: flex;
             align-items: center;
-            justify-content: center; /* Center nav items */
+            justify-content: center;
             box-shadow: var(--shadow-md);
             z-index: 1000;
         }
@@ -82,9 +82,12 @@
             padding: 0;
             margin: 0;
             display: flex;
-            gap: var(--spacing-md);
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: clamp(0.5rem, 2vw, 1rem);
+            flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
         }
 
         nav.main-nav ul li {
@@ -94,14 +97,15 @@
         nav.main-nav ul li a {
             color: var(--color-nav-link);
             text-decoration: none;
-            font-size: 1.05rem; /* Adjusted size */
+            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
             font-weight: 500;
-            padding: 0.5rem 1rem;
+            padding: clamp(0.3rem, 1.5vw, 0.5rem) clamp(0.5rem, 2vw, 1rem);
             border-radius: var(--radius-md);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            white-space: nowrap; /* Prevent link text wrapping */
+            white-space: nowrap;
+            display: inline-block;
         }
 
         nav.main-nav ul li a:hover,
@@ -115,10 +119,11 @@
         .try-app-link {
             background: linear-gradient(135deg, #f59e0b, #ef4444);
             color: white !important;
-            padding: 8px 16px !important;
+            padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.8rem, 2vw, 1rem) !important;
             border-radius: var(--radius-md);
             font-weight: 600;
             transition: all 0.3s ease;
+            font-size: clamp(0.85rem, 2.5vw, 1.05rem);
         }
 
         .try-app-link:hover {
@@ -445,10 +450,43 @@
             backdrop-filter: blur(3px);
         }
 
+        @media (max-width: 768px) {
+            nav.main-nav {
+                height: auto;
+                min-height: var(--nav-height);
+                padding: 0.5rem;
+            }
+
+            nav.main-nav ul {
+                gap: 0.5rem;
+            }
+
+            nav.main-nav ul li a {
+                padding: 0.4rem 0.8rem;
+            }
+
+            .try-app-link {
+                padding: 0.4rem 0.8rem !important;
+            }
+        }
+
         @media (max-width: 480px) {
-            .azure-popup {
-                width: 85%;
-                padding: 1.5rem;
+            nav.main-nav {
+                padding: 0.3rem;
+            }
+
+            nav.main-nav ul {
+                gap: 0.3rem;
+            }
+
+            nav.main-nav ul li a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.85rem;
+            }
+
+            .try-app-link {
+                padding: 0.3rem 0.6rem !important;
+                font-size: 0.85rem;
             }
         }
 
