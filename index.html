@@ -376,6 +376,7 @@
         <ul>
             <li><a href="#challenges">Solutions</a></li>
             <li><a href="#team">Team</a></li>
+            <li><a href="#documents">Documents</a></li>
             <li><a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a></li>
             <li><a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
@@ -527,7 +528,7 @@
               </div>
                  <div class="team-member-card">
                      <div class="team-photo">
-                        <img src="photos/serra.jpeg" alt="Photo of Serra Çapraz">
+                        <img src="photos/serra.png" alt="Photo of Serra Çapraz">
                     </div>
                     <div class="team-member-header">
                         <h4>Serra Çapraz</h4>
@@ -551,6 +552,40 @@
             </div>
         </section>
 
+        <section id="documents">
+            <h2>Project Documents</h2>
+            
+            <div class="documents-grid">
+                <div class="document-category">
+                    <h3>Project Reports</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/document/d/1C1W7hPPHdU-bysxkExaqe4h3mENvpj6lJbyp-xbf6rs/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Final Report</a></li>
+                        <li><a href="https://docs.google.com/document/d/1-0Lem25pzgoLtVyOR2chnPCe-cIkLkaXjffoRa7qrU0/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Project Specification</a></li>
+                        <li><a href="https://docs.google.com/document/d/1CKBIpctPEY4dxsLcIjbkGXNeWdXR6GokfccGA6C3Sys/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Detailed Design Report</a></li>
+                        <li><a href="https://docs.google.com/document/d/1DinQpNCPq0vmL0t7FOltTA4SU5qDGKqhVn8dJuo4smA/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Analysis and Requirements</a></li>
+                    </ul>
+                </div>
+
+                <div class="document-category">
+                    <h3>Team Logbooks</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/document/d/12M-xSt9m3_tiHV9w0I6h9hiWTQGvtJtJiKwRWSNUWYk/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Serra Çapraz's Logbook</a></li>
+                        <li><a href="https://docs.google.com/document/d/1jlCoMV4PLtpMOr_RsVlnA0c9kyK1ARj4brlTidHn_go/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Alper Göçmen's Logbook</a></li>
+                        <li><a href="https://docs.google.com/document/d/1xKvzR8Jn3wR0czgyeSaiQFPomX9m6EQuGFZIxXjp_Nw/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Berkan Yıkılmaz's Logbook</a></li>
+                        <li><a href="https://docs.google.com/document/d/1L5RgplKfLwWEf3AhZmzZX5eIchpvI04YD2oY31Gz5bU/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Mehmet Dedeler's Logbook</a></li>
+                        <li><a href="https://docs.google.com/document/d/1HHbAKmV_nfDdOnxdersnih9H70ml03YlDoAjV0a6irQ/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Eray Yapağcı's Logbook</a></li>
+                    </ul>
+                </div>
+
+                <div class="document-category">
+                    <h3>Meeting Logs</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/document/d/1_7bTJUKxXNzpncQmVjh2rDDpDznt2oth/edit?usp=drive_link&ouid=114502194657772445542&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">Group Meeting Logs</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <footer>
@@ -558,6 +593,56 @@
         <a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a> |
         <a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a>
     </footer>
+
+    <style>
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .document-category {
+            background-color: var(--color-bg-card);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .document-category h3 {
+            color: var(--color-text-heading);
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .document-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .document-category li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .document-category a {
+            color: var(--color-text-body);
+            text-decoration: none;
+            display: block;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
+        }
+
+        .document-category a:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateX(5px);
+        }
+    </style>
 
 </body>
 </html>
