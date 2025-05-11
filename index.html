@@ -369,14 +369,108 @@
             color: var(--color-primary);
         }
 
+        /* Azure Credit Popup Styles */
+        .azure-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #0078d4, #004578);
+            color: white;
+            padding: clamp(1rem, 5vw, 2rem);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            width: min(90%, 400px);
+            text-align: center;
+        }
+
+        .azure-popup h3 {
+            color: white;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .azure-popup .amount {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin: 0.5rem 0;
+            display: block;
+        }
+
+        .azure-popup p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .azure-popup .close-btn {
+            background: white;
+            color: #0078d4;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            width: min(80%, 200px);
+        }
+
+        .azure-popup .close-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .azure-popup .azure-logo {
+            width: clamp(50px, 15vw, 70px);
+            height: clamp(50px, 15vw, 70px);
+            margin-bottom: 1rem;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1999;
+            backdrop-filter: blur(3px);
+        }
+
+        @media (max-width: 480px) {
+            .azure-popup {
+                width: 85%;
+                padding: 1.5rem;
+            }
+        }
+
     </style>
 </head>
 <body>
+    <!-- Azure Credit Popup -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+    <div class="azure-popup" id="azurePopup">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Microsoft Azure Logo" class="azure-logo">
+        <h3>Azure Credit Award</h3>
+        <span class="amount">$5,000</span>
+        <p>Microsoft Azure credits awarded to Article Lens</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+
     <nav class="main-nav">
         <ul>
             <li><a href="#challenges">Solutions</a></li>
             <li><a href="#team">Team</a></li>
             <li><a href="#documents">Documents</a></li>
+            <li><a href="#awards">Awards</a></li>
             <li><a href="https://wonderful-stone-04ce1ca0f.6.azurestaticapps.net" target="_blank" rel="noopener noreferrer" class="try-app-link">Try the App</a></li>
             <li><a href="https://github.com/article-lens" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
@@ -586,6 +680,22 @@
             </div>
         </section>
 
+        <section id="awards">
+            <h2>Awards & Recognition</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-icon">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Microsoft Azure Logo">
+                    </div>
+                    <div class="award-content">
+                        <h3>Microsoft Azure Credits</h3>
+                        <p class="award-amount">$5,000</p>
+                        <p class="award-description">Awarded for innovative use of AI in research assistance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <footer>
@@ -642,7 +752,106 @@
             color: white;
             transform: translateX(5px);
         }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+
+        .award-icon {
+            flex-shrink: 0;
+        }
+
+        .award-icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .award-content {
+            flex-grow: 1;
+        }
+
+        .award-content h3 {
+            color: var(--color-text-heading);
+            font-size: 1.4rem;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .award-amount {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 0.5rem 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .award-description {
+            color: var(--color-text-body);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .award-card {
+                flex-direction: column;
+                text-align: center;
+                padding: var(--spacing-md);
+            }
+
+            .award-icon img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .award-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .award-amount {
+                font-size: 1.8rem;
+            }
+        }
     </style>
 
+    <script>
+        // Show popup when page loads
+        window.onload = function() {
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('azurePopup').style.display = 'block';
+        }
+
+        // Close popup function
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('azurePopup').style.display = 'none';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('popupOverlay').onclick = closePopup;
+    </script>
 </body>
 </html>
